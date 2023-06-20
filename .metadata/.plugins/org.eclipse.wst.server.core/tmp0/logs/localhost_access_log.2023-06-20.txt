@@ -208,3 +208,4 @@
 0:0:0:0:0:0:0:1 - - [20/Jun/2023:12:13:39 +0000] "GET /ServletJSP/ HTTP/1.1" 200 1389
 0:0:0:0:0:0:0:1 - - [20/Jun/2023:12:13:57 +0000] "POST /ServletJSP/inscription HTTP/1.1" 302 -
 0:0:0:0:0:0:0:1 - - [20/Jun/2023:12:13:57 +0000] "GET /ServletJSP/accueil HTTP/1.1" 200 719
+0:0:0:0:0:0:0:1 - - [20/Jun/2023:12:47:53 +0000] "GET /ServletJSP/connexion HTTP/1.1" 200 1009
