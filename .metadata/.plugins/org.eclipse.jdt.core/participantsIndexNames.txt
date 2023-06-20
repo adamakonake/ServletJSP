@@ -1,0 +1,5 @@
+INDEX VERSION 1.134
+C:\Users\kona.adama\eclipse-workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3073282038.index
+\ServletJSP\src\main\java
+C:\Users\kona.adama\eclipse-workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3098172115.index
+\ServletJSP\src\main\java

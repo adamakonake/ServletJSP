@@ -1,0 +1,26 @@
+package bean;
+
+public class Utilisateur {
+	
+	private String nom;
+	private String prenom;
+	private String pseudo;
+	private String mail;
+	private String motDePasse;
+
+	public Utilisateur() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Utilisateur(String nom, String prenom, String pseudo, String mail, String motDePasse) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.pseudo = pseudo;
+		this.mail = mail;
+		this.motDePasse = motDePasse;
+	}
+	
+	
+
+}

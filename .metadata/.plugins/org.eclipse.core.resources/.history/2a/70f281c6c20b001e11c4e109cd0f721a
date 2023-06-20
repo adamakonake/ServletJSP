@@ -1,0 +1,26 @@
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import bean.TRTR;
+import bean.Utilisateur;
+
+@WebServlet("/")
+public class Test extends HttpServlet {
+
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String message = "un teste de message ";
+		request.setAttribute("test", message);
+		Utilisateur utilisateur = new Utilisateur("Seck","Issa","sorcier","seck@gmail.com","azertyu");
+		TRTR trtr = new TRTR("tr","ghj");
+		request.setAttribute("user", utilisateur);
+		request.setAttribute("tr", trtr);
+		this.getServletContext().getRequestDispatcher( "/WEB-INF/index.jsp" ).forward( request, response );
+	}
+
+}

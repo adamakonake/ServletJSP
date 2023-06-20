@@ -1,0 +1,137 @@
+package service;
+
+import java.util.HashMap;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import bean.Utilisateur;
+
+public class UtilisateurService {
+	
+	private static final String VUE = "/WEB-INF/accueil.jsp";
+	private static final String VUE_INS = "/inscrire.jsp";
+	private static final String NOM = "nom";
+	private static final String PRENOM = "prenom";
+	private static final String PSEUDO = "pseudo";
+	private static final String EMAIL = "email";
+	private static final String MOT_DE_PASSE = "motdepasse";
+	private static final String CONFIRMER = "confirme";
+	public boolean anError = false;
+	public HashMap<String, String> erreur = new HashMap<String, String>();
+
+	public UtilisateurService() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Utilisateur inscrireUtilisateur (HttpServletRequest request) {
+		
+		String nom = getValeurChamp(request, NOM);
+		String prenom = getValeurChamp(request, PRENOM);
+		String pseudo = getValeurChamp(request, PSEUDO);
+		String email = getValeurChamp(request, EMAIL);
+		String motDePasse = getValeurChamp(request, MOT_DE_PASSE);
+		String confirme = getValeurChamp(request, "confirme");
+		
+		Utilisateur utilisateur = new Utilisateur();
+		
+		utilisateur.setNom(nom);
+		utilisateur.setPrenom(prenom);
+		utilisateur.setPseudo(pseudo);
+		utilisateur.setMail(email);
+		
+		try {
+			validationPassword(motDePasse,confirme);
+		} catch (Exception e) {
+			// TODO: handle exception
+			erreur.put("confirme", e.getMessage());
+			anError = true;
+		}
+		
+		utilisateur.setMotDePasse(motDePasse);
+		
+		return utilisateur;
+		
+	}
+	
+	public Utilisateur connecterUtilisateur(HttpServletRequest request, HttpSession session) {
+		
+		String pseudo = getValeurChamp(request, PSEUDO);
+		String motDePasse = getValeurChamp(request, MOT_DE_PASSE);
+		
+		Utilisateur utilisateur = new Utilisateur();
+		
+		utilisateur.setPseudo(pseudo);
+		
+		
+		if(session != null) {
+			Utilisateur userVerif = (Utilisateur) session.getAttribute(pseudo);
+			if(userVerif != null) {
+				if(!motDePasse.equals(userVerif.getMotDePasse())) {
+					erreur.put("confirme", "Mot de passe incorecte");
+					anError = true;
+					utilisateur.setMotDePasse(motDePasse);
+					return utilisateur;
+				}else {
+					utilisateur = userVerif;
+					return utilisateur;
+				}
+			}else {
+				erreur.put("confirme", "Utilisateur n'existe pas");
+				anError = true;
+				utilisateur.setMotDePasse(motDePasse);
+				return utilisateur;
+			}
+		}else {
+			erreur.put("confirme", "Utilisateur n'existe pas");
+			anError = true;
+			utilisateur.setMotDePasse(motDePasse);
+			return utilisateur;
+		}
+		
+		
+	}
+
+	public boolean isAnError() {
+		return anError;
+	}
+
+	public void setAnError(boolean anError) {
+		this.anError = anError;
+	}
+
+	public HashMap<String, String> getErreur() {
+		return erreur;
+	}
+	
+	public void validationPassword(String password, String confirme)throws Exception {
+		if((password != null && password.trim().length()!=0) && (confirme != null && confirme.trim().length()!=0) ) {
+			if(!password.equals(confirme))
+				throw new Exception("Les mot de passes sont différents, veuillez le resaisir");
+			else if(password.trim().length()<6)
+				throw new Exception("Votre mot de passe doit contenir au moins 6 caractères");
+		}else {
+			throw new Exception("Veuillez saisir et confirmer votre mot de passe");
+		}
+	}
+	
+	public void validationPassword(String password)throws Exception {
+		if(password != null) {
+			if(password.trim().length()<6)
+				throw new Exception("Votre mot de passe doit contenir au moins 6 caractères");
+		}else {
+			throw new Exception("Veuillez saisir et confirmer votre mot de passe");
+		}
+	}
+	
+	private static String getValeurChamp( HttpServletRequest request, String nomChamp ) {
+	    String valeur = request.getParameter( nomChamp );
+	    if ( valeur == null || valeur.trim().length() == 0 ) {
+	        return null;
+	    } else {
+	        return valeur.trim();
+	    }
+	}
+
+}

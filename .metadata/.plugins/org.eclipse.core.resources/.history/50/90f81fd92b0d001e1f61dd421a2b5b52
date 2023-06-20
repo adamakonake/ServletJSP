@@ -1,0 +1,39 @@
+package service;
+
+import java.util.HashMap;
+
+import javax.servlet.http.HttpServletRequest;
+
+import bean.Utilisateur;
+
+public class UtilisateurService {
+	
+	private static final String VUE = "/WEB-INF/accueil.jsp";
+	private static final String VUE_INS = "/inscrire.jsp";
+	private static final String NOM = "nom";
+	private static final String PRENOM = "prenom";
+	private static final String PSEUDO = "pseudo";
+	private static final String EMAIL = "email";
+	private static final String MOT_DE_PASSE = "motdepasse";
+	private static final String CONFIRMER = "confirme";
+	public boolean anError = false;
+	public HashMap<String, String> erreur = new HashMap<String, String>();
+
+	public UtilisateurService() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Utilisateur iscrireUtilisateur(HttpServletRequest request)throws  {
+		
+	}
+
+	public boolean isAnError() {
+		return anError;
+	}
+
+	public HashMap<String, String> getErreur() {
+		return erreur;
+	}
+	
+
+}

@@ -1,0 +1,68 @@
+import java.io.IOException;
+import java.util.HashMap;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import bean.Utilisateur;
+
+@WebServlet("/accueil")
+public class MonServlet extends HttpServlet {
+	
+	public static final String VUE = "/WEB-INF/accueil.jsp";
+	public static final String VUE_INS = "/inscrire.jsp";
+	public static final String NOM = "nom";
+	public static final String PRENOM = "prenom";
+	public static final String PSEUDO = "pseudo";
+	public static final String EMAIL = "email";
+	public static final String MOT_DE_PASSE = "motdepasse";
+	public static final String CONFIRMER = "confirme";
+	boolean anError = false;
+	HashMap<String, String> erreur = new HashMap<String, String>();
+	
+	public void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+		
+	}
+
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		Utilisateur utilisateur = new Utilisateur();
+		utilisateur.setNom(request.getParameter(NOM));
+		utilisateur.setPrenom(request.getParameter(PRENOM));
+		utilisateur.setPseudo(request.getParameter(PSEUDO));
+		utilisateur.setMail(request.getParameter(EMAIL));
+		utilisateur.setMotDePasse(request.getParameter(MOT_DE_PASSE));
+		
+		
+		try {
+			validationPassword(request.getParameter(MOT_DE_PASSE), request.getParameter(CONFIRMER));
+		} catch (Exception e) {
+			// TODO: handle exception
+			erreur.put("confirme", e.getMessage());
+			anError = true;
+		}
+		
+		request.setAttribute("error", erreur);
+		request.setAttribute("user", utilisateur);
+		if(!anError)
+			this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
+		else
+			this.getServletContext().getRequestDispatcher( VUE_INS ).forward( request, response );
+			
+	}
+	
+	public void validationPassword(String password, String confirme)throws Exception {
+		if((password != null && password.trim().length()!=0) && (confirme != null && confirme.trim().length()!=0) ) {
+			if(!password.equals(confirme))
+				throw new Exception("Les mot de passes sont différents, veuillez le resaisir");
+			else if(password.trim().length()<=6)
+				throw new Exception("Votre mot de passe doit contenir au moins 6 caractères");
+		}else {
+			throw new Exception("Veuillez saisir et confirmer votre mot de passe");
+		}
+	}
+
+}

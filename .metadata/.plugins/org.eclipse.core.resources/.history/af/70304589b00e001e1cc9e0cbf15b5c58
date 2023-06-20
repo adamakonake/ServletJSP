@@ -1,0 +1,58 @@
+import java.io.IOException;
+import java.util.HashMap;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
+
+import bean.Utilisateur;
+import service.UtilisateurService;
+
+@WebServlet("/accueil")
+public class MonServlet extends HttpServlet {
+	
+	public static final String VUE = "/WEB-INF/accueil.jsp";
+	public static final String VUE_INS = "/inscrire.jsp";
+	public static final String VUE_CONEC = "/WEB-INF/connexion.jsp";
+	
+	
+	public void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+		
+	}
+
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		HttpSession session = request.getSession();
+		if(request.getParameter("path").equals("inscrire")) {
+			UtilisateurService service = new UtilisateurService();
+			Utilisateur utilisateur = service.inscrireUtilisateur(request);
+			request.setAttribute("error", service.getErreur());
+			request.setAttribute("user", utilisateur);
+			if(!service.anError) {
+				session.setAttribute(utilisateur.getPseudo(), utilisateur);
+				this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
+			}else {
+				service.setAnError(false);
+				session.setAttribute("user", null);
+				this.getServletContext().getRequestDispatcher( VUE_INS ).forward( request, response );
+			}
+		}else {
+			UtilisateurService service = new UtilisateurService();
+			Utilisateur utilisateur = service.connecterUtilisateur(request,session);
+			request.setAttribute("error", service.getErreur());
+			request.setAttribute("user", session.getAttribute(utilisateur.getPseudo()));
+			if(!service.anError)
+				this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
+			else {
+				service.setAnError(false);
+				this.getServletContext().getRequestDispatcher( VUE_CONEC ).forward( request, response );
+			}
+		}
+			
+	}
+
+}

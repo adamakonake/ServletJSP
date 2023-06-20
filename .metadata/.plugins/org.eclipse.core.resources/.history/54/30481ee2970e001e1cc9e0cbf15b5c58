@@ -1,0 +1,24 @@
+@charset "UTF-8";
+
+.contentButton{
+	height: 100%;
+	background-color: red;
+	margin-top: auto;
+	margin-bottom: auto;
+}
+.decon{
+	display: block;	
+	text-align: center;
+	text-decoration: none;
+	border: 1px solid;
+	padding: 10px;
+	border-radius: 3px;
+	
+}
+
+.header {
+	display: flex;
+	justify-content: space-between;
+	background-color: aqua;
+	
+}

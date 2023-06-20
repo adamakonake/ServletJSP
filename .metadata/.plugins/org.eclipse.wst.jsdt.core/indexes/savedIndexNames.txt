@@ -1,0 +1,9 @@
+INDEX VERSION 1.4+C:\Users\kona.adama\eclipse-workspace\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+1534925240.index
+3073282038.index
+2191450755.index
+145793813.index
+3073282038.index
+2351425575.index
+2805553784.index
+1903174641.index

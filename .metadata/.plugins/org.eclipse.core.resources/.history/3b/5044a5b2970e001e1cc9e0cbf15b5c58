@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+
+.decon{
+	display: block;	
+	text-align: center;
+	text-decoration: none;
+	border: 1px solid;
+	margin-top: auto;
+	margin-bottom: auto;
+	
+}
+
+.header {
+	display: flex;
+	justify-content: space-between;
+	background-color: aqua;
+	
+}

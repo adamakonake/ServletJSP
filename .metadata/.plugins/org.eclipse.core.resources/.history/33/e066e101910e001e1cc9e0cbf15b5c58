@@ -1,0 +1,28 @@
+<%@page import="bean.Utilisateur"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<main>
+	
+		<div class="header">
+			<h1>
+				BIENVENUE ${ user.nom } ${user.prenom }
+			</h1>
+			<a href="connexion">Deconnexion</a>
+		</div>
+		
+		<c:forEach var="users" items="${ sessionScope }">
+		
+			<p> ${users.value.prenom} ${users.value.nom} ${users.value.mail}</p>
+		
+		</c:forEach>
+	
+	</main>
+</body>
+</html>

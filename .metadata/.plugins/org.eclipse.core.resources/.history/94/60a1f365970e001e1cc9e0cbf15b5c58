@@ -1,0 +1,18 @@
+@charset "UTF-8";
+
+.contentButton{
+	height: 100%;
+	background-color: red;
+}
+.decon{
+	display: block;	
+	text-align: center;
+	text-decoration: none;
+	border: 1px solid;
+	
+}
+
+.header {
+	display: flex;
+	justify-content: space-between;
+}

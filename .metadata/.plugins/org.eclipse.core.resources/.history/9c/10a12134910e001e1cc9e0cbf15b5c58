@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+.tit{
+	display: inline;	
+}
+
+header {
+	display: flex;
+	justify-content: space-around;
+}

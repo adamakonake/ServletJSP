@@ -1,0 +1,33 @@
+<%@page import="bean.Utilisateur"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Accueil</title>
+	<link type="text/css" rel="stylesheet" href="CSS/accueil.css">
+</head>
+<body>
+	<main>
+	
+		<div class="header">
+			<h1>
+				BIENVENUE ${ user.nom } ${user.prenom }
+			</h1>
+			<div>
+				<a class="decon" href="connexion">Deconnexion</a>
+			</div>
+		</div>
+		
+		<c:forEach var="users" items="${ sessionScope }">
+		
+			<p> ${users.value.prenom} ${users.value.nom} ${users.value.mail}</p>
+		
+		</c:forEach>
+	
+	</main>
+</body>
+</html>

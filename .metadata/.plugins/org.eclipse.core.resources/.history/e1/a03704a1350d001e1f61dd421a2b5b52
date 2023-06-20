@@ -1,0 +1,9 @@
+import javax.servlet.http.HttpServlet;
+
+public class MonServlet2 extends HttpServlet {
+
+	public MonServlet2() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

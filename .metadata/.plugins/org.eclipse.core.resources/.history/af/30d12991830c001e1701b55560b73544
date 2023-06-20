@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+form{
+	border: 5px,solid ;
+	box-shadow: 5px,5px,5px,5px, black;
+}
+fieldset {
+    padding: 10px;
+    border: 1px #0568CD solid;
+    width: 50%;
+    margin: auto;
+}
+
+legend {
+    font-weight: bold;
+    color: #0568CD;
+}
+
+form label {
+	display: block;
+    width: 200px;
+    margin: 3px 0px 0px 0px;
+    margin-left: 30px;
+}
+
+form input {
+    margin: 3px 3px 0px 30px;
+    border: 1px #999 solid;
+    height: 30px;
+    border-radius: 5px;
+    width: 50%;
+}
+form input.sansLabel {
+	margin-top : 15px;
+    margin-left : 25%;
+    background-color: blue;
+    color: white;
+}
+
+form input.sansLabel :hover{
+	background-color: rgba(0, 0, blue, 0);
+}

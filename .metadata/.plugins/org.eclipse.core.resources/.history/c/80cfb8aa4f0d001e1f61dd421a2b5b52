@@ -1,0 +1,23 @@
+<%@page import="bean.Utilisateur"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>
+		BIENVENUE ${ user.nom } ${user.prenom }
+	</h1>
+	<c:forEach var="users" items="${ sessionScope }">
+	
+		<c:forEach var="us" items="${users.value">
+			<p> ${us.nom }</p>
+		</c:forEach>
+	
+	</c:forEach>
+	<p> ${sessionScope.Konake.nom }</p>
+</body>
+</html>

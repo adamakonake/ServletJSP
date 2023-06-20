@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+.decon{
+	display: block;	
+	margin: auto;
+	text-align: center;
+	text-decoration: none;
+}
+
+.header {
+	display: flex;
+	justify-content: space-between;
+}

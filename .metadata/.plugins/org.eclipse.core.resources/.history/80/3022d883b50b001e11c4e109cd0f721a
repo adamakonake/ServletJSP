@@ -1,0 +1,9 @@
+package bean;
+
+public class TRTR {
+
+	public TRTR() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

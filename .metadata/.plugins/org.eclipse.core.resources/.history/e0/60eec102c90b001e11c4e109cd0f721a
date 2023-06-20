@@ -1,0 +1,34 @@
+package bean;
+
+public class TRTR {
+	private String nom;
+	private String pre;
+
+	public TRTR() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public TRTR(String nom, String pre) {
+		super();
+		this.nom = nom;
+		this.pre = pre;
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public String getPre() {
+		return pre;
+	}
+
+	public void setPre(String pre) {
+		this.pre = pre;
+	}
+	
+
+}
